@@ -1,0 +1,1 @@
+0 4 * * * cd /var/www/skills.lilyluo.ai && /usr/bin/python3 scripts/scrape_skills.py >> /var/log/skills-lilyluo.log 2>&1
