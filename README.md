@@ -1,21 +1,37 @@
 # Skill精选 / skills.lilyluo.ai
 
-从 skillsmp.com/zh 与 skills.sh 精选高下载量 Agent Skills 的静态目录站。
+一个帮助你发现和上手 Agent Skills 的静态目录站。
 
-## 部署
+## 这里是什么？
 
-本项目是零依赖静态站点，可直接放到 Nginx、Caddy、Cloudflare Pages 或任意 VPS 静态目录。域名 `skills.lilyluo.ai` 在 DNS 中添加 A/AAAA 记录指向 VPS，再由 Nginx/Caddy 配置 HTTPS。
+Skill 是可以被 AI Agent 调用的一组可复用能力。本项目从公开 Skill 生态中筛选高下载量、实用性较强的工具，并按开发、设计、内容、效率等场景整理，帮助你少一点搜索，多一点上手。
 
-## 数据更新
+## 怎么使用？
 
-首页数据目前位于 `index.html` 的 `skills` 数组，字段包括名称、作者、分类、下载量、介绍、推荐理由与标签。建议后续接入定时抓取，将生成结果写入 `data/skills.json`，前端改为 fetch 读取。
+1. 打开线上目录：[Skill精选](https://lilyluoli.github.io/skills-lilyluo-ai/)
+2. 按分类筛选，或搜索你需要的任务与场景。
+3. 阅读每张卡片的用途和推荐理由。
+4. 点击卡片底部的“查看来源”，进入原作者页面，按照原页面说明安装或使用。
 
-## GitHub 私库
+## 数据来源
 
-在 GitHub 创建 Private repository 后：
+- [skills.sh](https://skills.sh/)：Agent Skills 公开目录
+- [SkillsMP](https://skillsmp.com/zh)：Skill 搜索与发现平台
+
+## 本地运行
+
+项目是零依赖静态站点，需要 Node.js 20 或更高版本：
 
 ```bash
-git init && git add . && git commit -m "feat: launch skill精选"
-git branch -M main && git remote add origin <PRIVATE_REPOSITORY_URL>
-git push -u origin main
+npm run build
 ```
+
+构建结果会写入 `dist/`，可直接部署到任意静态托管服务。
+
+## GitHub Pages 部署
+
+仓库已配置 `.github/workflows/pages.yml`。每次推送到 `main` 分支后，GitHub Actions 会自动构建并发布到：
+
+<https://lilyluoli.github.io/skills-lilyluo-ai/>
+
+每天运行的 `Update curated skills` 工作流会更新 `data/skills.json`。
